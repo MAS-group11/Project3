@@ -1,0 +1,41 @@
+%Livescript: 
+
+syms x
+%test for polynomial A - I run my polint function, then int(P)+1 to check
+
+P=6*x^5+5*x^4+4*x^3+3*x^2+2*x+6
+polint(P)
+int(P)+1
+%functions are identical
+
+P=x^6-x^4+3*x^2+1
+polint(P)
+int(P)+1
+%functions are identical
+
+%Function:
+
+function B=polint(P)
+format compact
+syms x
+
+%makes x, which stores coefficients
+x = sym2poly(P);
+n = length(x);
+for i = 1:length(x)
+   
+   %grabs each coefficient and divides it by itself + 1
+   
+   x(i) = x(i)/n;
+
+   n = n-1;
+   
+    
+    
+    
+end
+%this makes sure each polynomial goes up a rank (n^2 becomes n^3)
+x((length(x)+1)) = 1;
+B = poly2sym(x);
+
+%Written by Sam Bevans-Kerr
